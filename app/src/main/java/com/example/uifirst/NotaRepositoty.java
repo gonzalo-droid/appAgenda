@@ -30,6 +30,8 @@ public class NotaRepositoty {
     public void insert(NotaEntity notaEntity){
         // insert en la db
         new insertAsyncTask(notaDao).execute(notaEntity);
+        // tarea en segundo plano
+        // .execute(notaEntity);
     }
 
     private static class insertAsyncTask extends AsyncTask<NotaEntity,Void,Void>{
@@ -44,6 +46,30 @@ public class NotaRepositoty {
         @Override
         protected Void doInBackground(NotaEntity... notaEntities) {
             notaDaoAsyncTask.insert(notaEntities[0]);
+            return null;
+        }
+
+
+    }
+
+    public void update(NotaEntity notaEntity){
+        // insert en la db
+        new updateAsyncTask(notaDao).execute(notaEntity);
+        // tarea en segundo plano
+        // .execute(notaEntity);
+    }
+    private static class updateAsyncTask extends AsyncTask<NotaEntity,Void,Void>{
+        private NotaDao notaDaoAsyncTask;
+
+        //instancia
+        updateAsyncTask(NotaDao dao){
+            notaDaoAsyncTask = dao;
+        }
+
+        //parametro es un array pero como solo se envia un elemento "[0]"
+        @Override
+        protected Void doInBackground(NotaEntity... notaEntities) {
+            notaDaoAsyncTask.update(notaEntities[0]);
             return null;
         }
 

@@ -7,4 +7,6 @@
     <string name="title_notes">Notas</string>
     <string name="title_favoritas">Favoritas</string>
     <string name="title_user_profile">Mi perfil</string>
+    <string name="guardarNota">Guardar</string>
+    <string name="cancelarNota">Cancelar</string>
 </resources>

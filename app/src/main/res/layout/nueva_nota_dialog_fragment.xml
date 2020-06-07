@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NuevaNotaDialogFragment">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:padding="16dp">
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/tilTitulo"
+           android:layout_marginTop="8dp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.496"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:outlineAmbientShadowColor="@color/colorAccent"
+           android:theme="@style/style_textInputLayout">
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Titulo"
+               android:inputType="textEmailAddress" />
+       </com.google.android.material.textfield.TextInputLayout>
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/tilContenido"
+           android:layout_marginTop="8dp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.496"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:outlineAmbientShadowColor="@color/colorAccent"
+           android:theme="@style/style_textInputLayout">
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Contenido"
+               android:lines="2"
+               android:inputType="textEmailAddress" />
+       </com.google.android.material.textfield.TextInputLayout>
+
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="8dp"
+           android:text="Seleccione un color de la nota"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:weightSum="3">
+           <RadioGroup
+               android:id="@+id/rgColor"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <androidx.appcompat.widget.AppCompatRadioButton
+                   android:id="@+id/btnRojo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Rojo"
+                   android:layout_weight="1"/>
+               <androidx.appcompat.widget.AppCompatRadioButton
+                   android:id="@+id/btnVerde"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Verde"
+                   android:layout_weight="1"/>
+               <androidx.appcompat.widget.AppCompatRadioButton
+                   android:id="@+id/btnAzul"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Azul"
+                   android:layout_weight="1"/>
+
+           </RadioGroup>
+
+       </LinearLayout>
+
+       <Switch
+           android:id="@+id/btnFavorita"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="8dp"
+           android:text="La nosta es favorita"/>
+   </LinearLayout>
+
+</FrameLayout>
