@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- colores de la app -->
+    <color name="colorPrimary">#ffd600</color>
+    <color name="colorPrimaryDark">#C7A500</color>
+    <color name="colorAccent">#2962FF</color>
+
+    <!-- color outLineBox textinputlayout -->
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#2962FF</color>
+</resources>

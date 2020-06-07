@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="37dp"
+    android:paddingRight="37dp"
+    tools:context=".ui.MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Login"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tilEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:outlineAmbientShadowColor="@color/colorAccent"
+        android:theme="@style/style_textInputLayout">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tilPassword"
+        app:layout_constraintEnd_toEndOf="@+id/tilEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tilEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorAccent"
+        android:theme="@style/style_textInputLayout">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:selectAllOnFocus="true"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
+        android:text="Entrar"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tilPassword"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tilPassword"
+        app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_frfr" />
+
+    <ImageView
+        android:id="@+id/ivInstagram"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginLeft="58dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFacebook"
+        app:layout_constraintEnd_toStartOf="@+id/ivWhasapp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivFacebook"
+        app:layout_constraintTop_toTopOf="@+id/ivFacebook"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_instagram" />
+
+    <ImageView
+        android:id="@+id/ivWhasapp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginLeft="59dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivInstagram"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivInstagram"
+        app:layout_constraintTop_toTopOf="@+id/ivInstagram"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_whatsapp" />
+
+    <ImageView
+        android:id="@+id/ivFacebook"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toStartOf="@+id/ivInstagram"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        app:srcCompat="@drawable/ic_facebook" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
