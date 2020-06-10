@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
+import com.example.uifirst.db.entity.NotaEntity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class NuevaNotaDialogFragment extends DialogFragment {
@@ -27,7 +28,7 @@ public class NuevaNotaDialogFragment extends DialogFragment {
     private TextInputLayout tilTitulo,tilContenido;
     private RadioGroup rgColor;
     private Switch swNotaFavorita;
-    private NuevaNotaDialogViewModel mViewModel;
+
 
     public static NuevaNotaDialogFragment newInstance() {
         return new NuevaNotaDialogFragment();
@@ -37,13 +38,6 @@ public class NuevaNotaDialogFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.nueva_nota_dialog_fragment, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(NuevaNotaDialogViewModel.class);
-        // TODO: Use the ViewModel
     }
 
     @Override
@@ -67,11 +61,22 @@ public class NuevaNotaDialogFragment extends DialogFragment {
 
                         boolean esFavorita = swNotaFavorita.isChecked();
 
+                        NuevaNotaDialogViewModel mViewModel
+                                = ViewModelProviders.of(getActivity())
+                                .get(NuevaNotaDialogViewModel.class);
+
+                        mViewModel.insrtNota(new NotaEntity(titulo,contenido,esFavorita,color));
+
+                        dialog.dismiss();
+
+                        // todos las frgamentos del mismo activity recibiran el mismo objeto
+                        // viewModelProvider
                     }
                 })
                 .setNegativeButton(R.string.cancelarNota, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialog
+                        dialog.dismiss();
                     }
                 });
 

@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MynotaRecyclerViewAdapter extends RecyclerView.Adapter<MynotaRecyclerViewAdapter.ViewHolder> {
 
-    private final List<NotaEntity> mValues;
+    private List<NotaEntity> mValues;
     private  Context context; //metodos para interactuar con la nota
 
     public MynotaRecyclerViewAdapter(List<NotaEntity> items, Context context) {
@@ -60,6 +60,13 @@ public class MynotaRecyclerViewAdapter extends RecyclerView.Adapter<MynotaRecycl
     @Override
     public int getItemCount() {
         return mValues.size();
+    }
+
+    //metodo para update of changes
+    public void setNuevasNotas(List<NotaEntity> nuevasNotas){
+        this.mValues = nuevasNotas;
+        //update the adapter
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

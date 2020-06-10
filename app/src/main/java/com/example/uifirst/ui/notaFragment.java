@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -14,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.example.uifirst.NuevaNotaDialogFragment;
+import com.example.uifirst.NuevaNotaDialogViewModel;
 import com.example.uifirst.R;
 import com.example.uifirst.db.entity.NotaEntity;
 import com.example.uifirst.ui.MynotaRecyclerViewAdapter;
@@ -34,6 +39,7 @@ public class notaFragment extends Fragment {
     private List<NotaEntity> notaEntityList;
     private MynotaRecyclerViewAdapter mynotaRecyclerViewAdapter;
     private Context ctx;
+    private NuevaNotaDialogViewModel nota;
 
     //private NotasInteractionListener mListener;
 
@@ -77,30 +83,26 @@ public class notaFragment extends Fragment {
                         new StaggeredGridLayoutManager(mColumnCount, StaggeredGridLayoutManager.VERTICAL));
             }
             notaEntityList = new ArrayList<>();
-            notaEntityList.add(new NotaEntity("Lunes negro","contenido contenido contenido",
-                    false,android.R.color.holo_blue_light));
-            notaEntityList.add(new NotaEntity("Martes","contenido contenido contenido contenido contenido contenido contenido",
-                    false,android.R.color.holo_green_light));
-            notaEntityList.add(new NotaEntity("Lunes blanco","contenido contenido contenido",
-                    false,android.R.color.holo_blue_light));
-            notaEntityList.add(new NotaEntity("Martes","contenido contenido contenido",
-                    false,android.R.color.holo_blue_light));
-            notaEntityList.add(new NotaEntity("Martes","contenido contenido contenido contenido contenido contenido contenido",
-                    false,android.R.color.holo_green_light));
-            notaEntityList.add(new NotaEntity("Jueves santo","contenido contenido contenido contenido contenido contenido",
-                    true,android.R.color.holo_red_light));
-            notaEntityList.add(new NotaEntity("Viernes","contenido contenido contenido contenido contenido contenido"
-                    ,true,android.R.color.holo_red_light));
-            notaEntityList.add(new NotaEntity("Miercoles","contenido contenido contenido contenido contenido contenido contenido contenido contenido",
-                    true, android.R.color.holo_green_light));
-            notaEntityList.add(new NotaEntity("Martes","contenido contenido contenido",
-                    false,android.R.color.holo_blue_light));
-            notaEntityList.add(new NotaEntity("Jueves santo","contenido contenido contenido contenido contenido contenido",
-                    true,android.R.color.holo_red_light));
             mynotaRecyclerViewAdapter =new MynotaRecyclerViewAdapter(notaEntityList,getActivity());
             recyclerView.setAdapter(mynotaRecyclerViewAdapter);
+
+            lanzarViewModel();
         }
         return view;
+    }
+
+    private void lanzarViewModel() {
+        //obtner la misma instancia del viewModel
+        nota = ViewModelProviders.of(getActivity())
+                .get(NuevaNotaDialogViewModel.class);
+        // observe => mantiene esperando los cambios
+        nota.getAllNotas().observe(getActivity(), new Observer<List<NotaEntity>>() {
+            @Override
+            public void onChanged(List<NotaEntity> notaEntities) {
+                // se actuliza el adapter
+                mynotaRecyclerViewAdapter.setNuevasNotas(notaEntities);
+            }
+        });
     }
 
 
