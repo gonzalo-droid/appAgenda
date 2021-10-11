@@ -1,7 +1,10 @@
 package com.example.uifirst.ui;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.example.uifirst.NuevaNotaDialogViewModel;
 import com.example.uifirst.R;
 import com.example.uifirst.db.entity.NotaEntity;
 
@@ -23,10 +27,14 @@ public class MynotaRecyclerViewAdapter extends RecyclerView.Adapter<MynotaRecycl
 
     private List<NotaEntity> mValues;
     private  Context context; //metodos para interactuar con la nota
+    private NuevaNotaDialogViewModel nuevaNotaDialogViewModel;
 
     public MynotaRecyclerViewAdapter(List<NotaEntity> items, Context context) {
         mValues = items;
         this.context = context;
+        nuevaNotaDialogViewModel= ViewModelProviders.
+                of((AppCompatActivity)context). //instancia del activity donde trabajamos
+                get(NuevaNotaDialogViewModel.class);
     }
 
     @Override
@@ -50,9 +58,20 @@ public class MynotaRecyclerViewAdapter extends RecyclerView.Adapter<MynotaRecycl
             holder.ivfavorita.setImageResource(R.drawable.ic_star_border_black_24dp);
         }
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.ivfavorita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(holder.mItem.isFavorita()){
+                    holder.mItem.setFavorita(false);
+                    holder.ivfavorita.setImageResource(R.drawable.ic_star_border_black_24dp);
+                }else{
+                    holder.mItem.setFavorita(true);
+                    holder.ivfavorita.setImageResource(R.drawable.ic_star_black_24dp);
+                }
+
+                //update dato viewModel -> repositorio -> dao -> update en la DB
+                nuevaNotaDialogViewModel.updateNota(holder.mItem);
+
             }
         });
     }

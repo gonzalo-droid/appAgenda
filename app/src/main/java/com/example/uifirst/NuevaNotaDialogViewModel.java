@@ -17,7 +17,7 @@ public class NuevaNotaDialogViewModel extends AndroidViewModel {
     public NuevaNotaDialogViewModel(Application application) {
         super(application);
         notaRepositoty = new NotaRepositoty(application);
-        allNotas = notaRepositoty.getAll();
+        allNotas = notaRepositoty.getAll(); //devuelte la lista notas
     }
 
     //frgamento q necesita recibir la nueva lista de datos
@@ -28,6 +28,10 @@ public class NuevaNotaDialogViewModel extends AndroidViewModel {
     //frgamento q insert una nueva nota
     public void insrtNota(NotaEntity nuevaNotaEntity) {
         notaRepositoty.insert(nuevaNotaEntity);
+    }
+
+    public void updateNota(NotaEntity nuevaNotaEntity) {
+        notaRepositoty.update(nuevaNotaEntity);
     }
 
 }

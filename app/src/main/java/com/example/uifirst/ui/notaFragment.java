@@ -3,7 +3,9 @@ package com.example.uifirst.ui;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
@@ -13,6 +15,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -54,6 +59,8 @@ public class notaFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // definir menu de opciones propia del fragment
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -105,7 +112,28 @@ public class notaFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.options_menu_nota_fragment,menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_add_nota:
+                mostrarDialogNuevaNota();
+            default:
+                return super.onOptionsItemSelected(item) ;
+        }
+    }
+
+    private void mostrarDialogNuevaNota() {
+
+        // fm => referencia al gestor de fragmentos
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        NuevaNotaDialogFragment dialogFragment = new NuevaNotaDialogFragment();
+        dialogFragment.show(fm,"Nueva nota");
+    }
 
     /*
     //ya e no implementamos la interfaz en la actividad eso no se usara

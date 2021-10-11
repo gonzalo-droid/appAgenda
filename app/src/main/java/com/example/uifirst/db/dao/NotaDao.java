@@ -17,9 +17,9 @@ public interface NotaDao {
 
     @Update
     void update(NotaEntity nota);
-
+/*
     @Query("DELETE FROM notas")
-    void deleteAll(NotaEntity nota);
+    void deleteAll(NotaEntity nota);*/
 
     @Query("DELETE FROM notas WHERE id = :idNota")
     void deleteById(int idNota);

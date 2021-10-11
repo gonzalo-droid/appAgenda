@@ -1,13 +1,19 @@
 package com.example.uifirst.db.entity;
 
+import android.graphics.Bitmap;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+//default room use name of Javaclass as name of tableDB
+//default room use name of attributeClass as name of columnDB
 
 @Entity(tableName = "notas")
 public class NotaEntity {
 
+    //autoGenerate = true ===> id automaticos a entity
     @PrimaryKey(autoGenerate = true)
     public int id;
 
@@ -16,6 +22,10 @@ public class NotaEntity {
     public String contenido;
     public boolean favorita;
     public String color;
+
+    //ignorar campos
+    @Ignore
+    Bitmap picture;
 
     public NotaEntity() {
 

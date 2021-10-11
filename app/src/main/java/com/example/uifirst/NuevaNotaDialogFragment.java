@@ -61,6 +61,7 @@ public class NuevaNotaDialogFragment extends DialogFragment {
 
                         boolean esFavorita = swNotaFavorita.isChecked();
 
+                        //comunicar al viewmodel la nueva nota
                         NuevaNotaDialogViewModel mViewModel
                                 = ViewModelProviders.of(getActivity())
                                 .get(NuevaNotaDialogViewModel.class);
